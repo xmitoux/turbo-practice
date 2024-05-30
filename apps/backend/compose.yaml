@@ -1,0 +1,32 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    environment:
+      - TZ=Asia/Tokyo
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    init: true
+    tty: true
+    depends_on:
+      - postgres_db
+
+  postgres_db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - data:/var/lib/postgresql/data
+
+volumes:
+  data:
+  node_modules:
