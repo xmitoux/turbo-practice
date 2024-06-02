@@ -10,7 +10,7 @@
     "frontend": "pnpm -F \"frontend\""
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
+    "@repo/lint": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "prettier": "^3.2.5",
     "turbo": "latest"
