@@ -291,6 +291,9 @@ importers:
       eslint-config-turbo:
         specifier: ^1.12.4
         version: 1.12.4(eslint@9.4.0)
+      eslint-plugin-perfectionist:
+        specifier: ^2.10.0
+        version: 2.10.0(eslint@9.4.0)(typescript@5.4.5)
       eslint-plugin-unicorn:
         specifier: ^53.0.0
         version: 53.0.0(eslint@9.4.0)
@@ -7107,6 +7110,33 @@ packages:
   /eslint-plugin-only-warn@1.1.0:
     resolution: {integrity: sha512-2tktqUAT+Q3hCAU0iSf4xAN1k9zOpjK5WO8104mB0rT/dGhOa09582HN5HlbxNbPRZ0THV7nLGvzugcNOSjzfA==}
     engines: {node: '>=6'}
+    dev: true
+
+  /eslint-plugin-perfectionist@2.10.0(eslint@9.4.0)(typescript@5.4.5):
+    resolution: {integrity: sha512-P+tdrkHeMWBc55+DZsoDOAftV1WCsEoHaKm6JC7zajFus/syfT4vUPBFb3atGFSuyaVnGQGHlcKpP9X3Q0gH/w==}
+    peerDependencies:
+      astro-eslint-parser: ^0.16.0
+      eslint: '>=8.0.0'
+      svelte: '>=3.0.0'
+      svelte-eslint-parser: ^0.33.0
+      vue-eslint-parser: '>=9.0.0'
+    peerDependenciesMeta:
+      astro-eslint-parser:
+        optional: true
+      svelte:
+        optional: true
+      svelte-eslint-parser:
+        optional: true
+      vue-eslint-parser:
+        optional: true
+    dependencies:
+      '@typescript-eslint/utils': 7.11.0(eslint@9.4.0)(typescript@5.4.5)
+      eslint: 9.4.0
+      minimatch: 9.0.4
+      natural-compare-lite: 1.4.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
     dev: true
 
   /eslint-plugin-playwright@0.16.0(eslint-plugin-jest@27.6.0)(eslint@8.57.0):
