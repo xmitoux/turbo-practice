@@ -1,19 +1,21 @@
 // @ts-check
 
-import { createConfigForNuxt } from "@nuxt/eslint-config/flat";
+import { createConfigForNuxt } from '@nuxt/eslint-config/flat';
+// @ts-ignore
+import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 
 /**
  * rules
  * @type {import('eslint').Linter.FlatConfig}
  */
 export const customEslintRules = {
-  // plugins: {
-  //   /**@type {any} missing types */
-  //   perfectionist: perfectionist,
-  // },
-  // rules: {
-  //   "no-console": "error"
-  // }
+    // plugins: {
+    //   /**@type {any} missing types */
+    //   perfectionist: perfectionist,
+    // },
+    // rules: {
+    //   "no-console": "error"
+    // }
 };
 
 /**
@@ -22,8 +24,10 @@ export const customEslintRules = {
  * @type {import('eslint').Linter.FlatConfig}
  */
 export const customIgnores = {
-  ignores: ["**/node_modules", "**/public", "**/vendor", "**/dist", "**/.nuxt"],
+    ignores: ['**/node_modules', '**/public', '**/vendor', '**/dist', '**/.nuxt'],
 };
+
+const unicornRecommended = eslintPluginUnicorn.configs['flat/recommended'];
 
 /**
  * For usage within a Nuxt context
@@ -35,24 +39,16 @@ export const customIgnores = {
  * It will also add all best-practices rules for js/ts/vue from `@nuxt/eslint-config`.
  * @see https://eslint.nuxt.com/packages/config
  */
-export const eslintConfigNuxt = [
-  customEslintRules,
-  customIgnores,
-];
+export const eslintConfigNuxt = [customEslintRules, customIgnores, unicornRecommended];
 
 /**
  * For standalone usage in packages without Nuxt context.
- *
  * `createConfigForNuxt()` will create all best-practices rules for js/ts/vue from `@nuxt/eslint-config`.
  * @see https://eslint.nuxt.com/packages/config
- *
- * The activated `tooling` feature enables rules with unicorn, regexp and jsdoc.
- * @see https://eslint.nuxt.com/packages/config#module-authors
- *
  */
-export const eslintConfigStandalone = createConfigForNuxt({
-  features: { tooling: true },
-}).append(
-  customEslintRules,
-  customIgnores,
-);
+export const eslintConfigStandalone = createConfigForNuxt().append([
+    customEslintRules,
+    customIgnores,
+    // @ts-ignore
+    unicornRecommended,
+]);
