@@ -1,15 +1,16 @@
 import { createConfigForNuxt } from '@nuxt/eslint-config/flat';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
-import perfectionistNatural from 'eslint-plugin-perfectionist/configs/recommended-natural';
+import configPerfectionistNatural from 'eslint-plugin-perfectionist/configs/recommended-natural';
+import onlyWarn from 'eslint-plugin-only-warn';
 
 /**
  * rules
  * @type {import('eslint').Linter.FlatConfig}
  */
 export const customEslintRules = {
-    // rules: {
-    //   "no-console": "error"
-    // }
+    rules: {
+        'no-console': 'error',
+    },
 };
 
 /**
@@ -21,8 +22,13 @@ export const customIgnores = {
     ignores: ['**/node_modules', '**/public', '**/vendor', '**/dist', '**/.nuxt'],
 };
 
-const unicornRecommended = eslintPluginUnicorn.configs['flat/recommended'];
+const configUnicornRecommended = eslintPluginUnicorn.configs['flat/recommended'];
 
+const configOnlyWarn = {
+    plugins: {
+        'only-warn': onlyWarn,
+    },
+};
 /**
  * For usage within a Nuxt context
  *
@@ -33,7 +39,13 @@ const unicornRecommended = eslintPluginUnicorn.configs['flat/recommended'];
  * It will also add all best-practices rules for js/ts/vue from `@nuxt/eslint-config`.
  * @see https://eslint.nuxt.com/packages/config
  */
-export const eslintConfigNuxt = [customEslintRules, customIgnores, unicornRecommended, perfectionistNatural];
+export const eslintConfigNuxt = [
+    customEslintRules,
+    customIgnores,
+    configUnicornRecommended,
+    configPerfectionistNatural,
+    configOnlyWarn,
+];
 
 /**
  * For standalone usage in packages without Nuxt context.
@@ -43,6 +55,7 @@ export const eslintConfigNuxt = [customEslintRules, customIgnores, unicornRecomm
 export const eslintConfigStandalone = createConfigForNuxt().append([
     customEslintRules,
     customIgnores,
-    unicornRecommended,
-    perfectionistNatural,
+    configUnicornRecommended,
+    configPerfectionistNatural,
+    configOnlyWarn,
 ]);
