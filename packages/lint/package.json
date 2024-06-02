@@ -10,6 +10,7 @@
     "@nuxt/eslint": "^0.3.13",
     "eslint": "^9.4.0",
     "eslint-config-turbo": "^1.12.4",
+    "eslint-plugin-only-warn": "^1.1.0",
     "eslint-plugin-perfectionist": "^2.10.0",
     "eslint-plugin-unicorn": "^53.0.0",
     "typescript": "^5.4.5"
