@@ -11,6 +11,7 @@ export const customEslintRules = {
     rules: {
         'no-console': 'error',
         'array-callback-return': ['error', { checkForEach: true }],
+        '@typescript-eslint/no-extraneous-class': 'off',
     },
 };
 
@@ -24,6 +25,14 @@ export const customIgnores = {
 };
 
 const configUnicornRecommended = eslintPluginUnicorn.configs['flat/recommended'];
+const customUnicornRules = {
+    rules: {
+        'unicorn/consistent-function-scoping': 'off',
+        'unicorn/filename-case': 'off',
+        'unicorn/prefer-module': 'off',
+        'unicorn/prevent-abbreviations': 'off',
+    },
+};
 
 const configOnlyWarn = {
     plugins: {
@@ -44,6 +53,7 @@ export const eslintConfigNuxt = [
     customEslintRules,
     customIgnores,
     configUnicornRecommended,
+    customUnicornRules,
     configPerfectionistNatural,
     configOnlyWarn,
 ];
@@ -57,6 +67,7 @@ export const eslintConfigStandalone = createConfigForNuxt().append([
     customEslintRules,
     customIgnores,
     configUnicornRecommended,
+    customUnicornRules,
     configPerfectionistNatural,
     configOnlyWarn,
 ]);
