@@ -10,6 +10,7 @@ import onlyWarn from 'eslint-plugin-only-warn';
 export const customEslintRules = {
     rules: {
         'no-console': 'error',
+        'array-callback-return': ['error', { checkForEach: true }],
     },
 };
 
