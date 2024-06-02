@@ -9,7 +9,6 @@
   "devDependencies": {
     "@nuxt/eslint": "^0.3.13",
     "eslint": "^9.4.0",
-    "eslint-config-prettier": "^9.1.0",
     "eslint-config-turbo": "^1.12.4",
     "typescript": "^5.4.5"
   }
