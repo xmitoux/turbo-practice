@@ -2,6 +2,7 @@ import { createConfigForNuxt } from '@nuxt/eslint-config/flat';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import configPerfectionistNatural from 'eslint-plugin-perfectionist/configs/recommended-natural';
 import onlyWarn from 'eslint-plugin-only-warn';
+import typescriptParser from '@typescript-eslint/parser';
 
 /**
  * rules
@@ -58,6 +59,18 @@ export const eslintConfigNuxt = [
     configOnlyWarn,
 ];
 
+// NestJS用のクラスデコレータに関する設定
+// https://typescript-eslint.io/blog/changes-to-consistent-type-imports-with-decorators/
+const configParser = {
+    languageOptions: {
+        parser: typescriptParser,
+        parserOptions: {
+            emitDecoratorMetadata: true,
+            experimentalDecorators: true,
+        },
+    },
+};
+
 /**
  * For standalone usage in packages without Nuxt context.
  * `createConfigForNuxt()` will create all best-practices rules for js/ts/vue from `@nuxt/eslint-config`.
@@ -70,4 +83,5 @@ export const eslintConfigStandalone = createConfigForNuxt().append([
     customUnicornRules,
     configPerfectionistNatural,
     configOnlyWarn,
+    configParser,
 ]);
