@@ -13,6 +13,11 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
         P2025: HttpStatus.NOT_FOUND,
     };
 
+    private defaultExceptionMessage(exception: Prisma.PrismaClientKnownRequestError): string {
+        const shortMessage = exception.message.slice(Math.max(0, exception.message.indexOf('→')));
+        return `[${exception.code}]: ` + shortMessage.slice(Math.max(0, shortMessage.indexOf('\n'))).replaceAll('\n', '').trim();
+    }
+
     catch(exception: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost) {
         this.logger.error(exception.message);
 
@@ -33,10 +38,5 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
             // default 500 error code
             super.catch(exception, host);
         }
-    }
-
-    private defaultExceptionMessage(exception: Prisma.PrismaClientKnownRequestError): string {
-        const shortMessage = exception.message.substring(exception.message.indexOf('→'));
-        return `[${exception.code}]: ` + shortMessage.substring(shortMessage.indexOf('\n')).replace(/\n/g, '').trim();
     }
 }

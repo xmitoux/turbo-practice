@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, ParseArrayPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, ParseArrayPipe, Patch, Post } from '@nestjs/common';
 import { HttpCode, Query } from '@nestjs/common/decorators';
 
 import { AqoursMembersService } from './aqours_members.service';
@@ -43,13 +43,13 @@ export class AqoursMembersController {
         return member;
     }
 
-    @Patch(':id')
-    update(@Param('id') id: number, @Body() updateAqoursMemberDto: UpdateAqoursMemberDto) {
-        return this.aqoursMembersService.update(id, updateAqoursMemberDto);
-    }
-
     @Delete(':id')
     remove(@Param('id') id: number) {
         return this.aqoursMembersService.remove(id);
+    }
+
+    @Patch(':id')
+    update(@Param('id') id: number, @Body() updateAqoursMemberDto: UpdateAqoursMemberDto) {
+        return this.aqoursMembersService.update(id, updateAqoursMemberDto);
     }
 }

@@ -1,3 +1,1 @@
-import { eslintConfigStandalone } from '@repo/lint';
-
-export default eslintConfigStandalone;
+export { eslintConfigStandalone as default } from '@repo/lint';

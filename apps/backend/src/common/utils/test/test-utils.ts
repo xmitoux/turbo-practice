@@ -1,10 +1,11 @@
-import { INestApplication, ValidationPipe } from '@nestjs/common';
-import { HttpAdapterHost } from '@nestjs/core';
-import { Prisma } from '@prisma/client';
-
-import { prisma } from './setup-e2e';
+import type { INestApplication} from '@nestjs/common';
+import type { Prisma } from '@prisma/client';
 
 import { PrismaClientExceptionFilter } from '@/common/filters/prisma-client-exception.filter';
+import { ValidationPipe } from '@nestjs/common';
+import { HttpAdapterHost } from '@nestjs/core';
+
+import { prisma } from './setup-e2e';
 
 export const resetTable = async (modelNames: Prisma.ModelName[], schemaId: string): Promise<void> => {
     const tablenames = modelNames.map((modelName) => convertModelNameToTableName(modelName));
@@ -20,7 +21,7 @@ export const resetTable = async (modelNames: Prisma.ModelName[], schemaId: strin
 
 const convertModelNameToTableName = (modelName: Prisma.ModelName): string => {
     const snakeCase = modelName
-        .replace(/([A-Z])/g, '_$1')
+        .replaceAll(/([A-Z])/g, '_$1')
         .toLowerCase()
         .replace(/^_/, '');
 

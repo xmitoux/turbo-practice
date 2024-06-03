@@ -1,14 +1,17 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { Prisma } from '@prisma/client';
-import { DeepMockProxy, mockDeep } from 'vitest-mock-extended';
-
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { UserEntity } from './entities/user.entity';
-import { UsersController } from './users.controller';
-import { UsersService } from './users.service';
+import type { TestingModule } from '@nestjs/testing';
+import type { Prisma } from '@prisma/client';
+import type { DeepMockProxy} from 'vitest-mock-extended';
 
 import { PrismaService } from '@/common/services/prisma.service';
+import { Test } from '@nestjs/testing';
+import { mockDeep } from 'vitest-mock-extended';
+
+import type { CreateUserDto } from './dto/create-user.dto';
+import type { UpdateUserDto } from './dto/update-user.dto';
+import type { UserEntity } from './entities/user.entity';
+
+import { UsersController } from './users.controller';
+import { UsersService } from './users.service';
 
 describe('UsersController', () => {
     let controller: UsersController;

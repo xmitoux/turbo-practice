@@ -1,6 +1,6 @@
 import { ClassSerializerInterceptor } from '@nestjs/common';
 import { ValidationPipe } from '@nestjs/common/pipes';
-import { NestFactory, Reflector, HttpAdapterHost } from '@nestjs/core';
+import { HttpAdapterHost, NestFactory, Reflector } from '@nestjs/core';
 import { Logger } from 'nestjs-pino';
 
 import { AppModule } from './app.module';
@@ -29,4 +29,6 @@ async function bootstrap() {
         console.log(`My awesome NestJs app is listening on port ${process.env.NODE_ENV}`);
     });
 }
+
+// eslint-disable-next-line unicorn/prefer-top-level-await
 bootstrap();

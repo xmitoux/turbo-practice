@@ -8,13 +8,6 @@ import { AqoursMember } from './entities/aqours_member.entity';
 export class AqoursMembersService {
     private members: AqoursMember[] = [];
 
-    create(createAqoursMemberDto: CreateAqoursMemberDto) {
-        const newMember = this.addIdToNewMember(createAqoursMemberDto);
-        this.members.push(newMember);
-
-        return { addedMember: newMember };
-    }
-
     addIdToNewMember(createAqoursMemberDto: CreateAqoursMemberDto): AqoursMember {
         const id = this.members.length + 1;
         const member = new AqoursMember({
@@ -25,15 +18,26 @@ export class AqoursMembersService {
         return member;
     }
 
+    create(createAqoursMemberDto: CreateAqoursMemberDto) {
+        const newMember = this.addIdToNewMember(createAqoursMemberDto);
+        this.members.push(newMember);
+
+        return { addedMember: newMember };
+    }
+
     createBulk(createAqoursMemberDtos: CreateAqoursMemberDto[]) {
-        createAqoursMemberDtos.forEach((createAqoursMemberDto) => {
+        for (const createAqoursMemberDto of createAqoursMemberDtos) {
             const newMember = this.addIdToNewMember(createAqoursMemberDto);
             this.members.push(newMember);
-        });
+        }
     }
 
     findAll(): AqoursMember[] {
         return this.members.map((member) => new AqoursMember(member));
+    }
+
+    findByIds(ids: number[]): AqoursMember[] {
+        return this.members.filter((member) => ids.includes(member.id)).map((member) => new AqoursMember(member));
     }
 
     findOne(id: number): AqoursMember | undefined {
@@ -43,8 +47,8 @@ export class AqoursMembersService {
         }
     }
 
-    findByIds(ids: number[]): AqoursMember[] {
-        return this.members.filter((member) => ids.includes(member.id)).map((member) => new AqoursMember(member));
+    remove(id: number) {
+        this.members = this.members.filter((member) => member.id !== id);
     }
 
     update(id: number, updateAqoursMemberDto: UpdateAqoursMemberDto) {
@@ -58,9 +62,5 @@ export class AqoursMembersService {
         updateAqoursMemberDto.icon && (member.icon = updateAqoursMemberDto.icon);
 
         return { updatedMember: member };
-    }
-
-    remove(id: number) {
-        this.members = this.members.filter((member) => member.id !== id);
     }
 }
