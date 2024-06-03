@@ -1,9 +1,18 @@
+import { UserEntity } from '@/modules/users/entities/user.entity';
 import { Post } from '@prisma/client';
 import { Exclude } from 'class-transformer';
 
-import { UserEntity } from '@/modules/users/entities/user.entity';
-
 export class PostEntity implements Post {
+    author: UserEntity;
+
+    authorId: null | number;
+    content: null | string;
+    id: number;
+    @Exclude()
+    published: boolean | null;
+
+    title: string;
+
     constructor({ author, ...data }: Partial<PostEntity>) {
         Object.assign(this, data);
 
@@ -11,14 +20,4 @@ export class PostEntity implements Post {
             this.author = new UserEntity(author);
         }
     }
-
-    id: number;
-    title: string;
-    content: string | null;
-    authorId: number | null;
-
-    author: UserEntity;
-
-    @Exclude()
-    published: boolean | null;
 }

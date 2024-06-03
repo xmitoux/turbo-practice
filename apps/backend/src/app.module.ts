@@ -1,10 +1,9 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { LoggerModule } from 'nestjs-pino';
-
 import { AqoursMembersModule } from '@/modules/aqours_members/aqours_members.module';
 import { PostsModule } from '@/modules/posts/posts.module';
 import { UsersModule } from '@/modules/users/users.module';
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { LoggerModule } from 'nestjs-pino';
 
 const pinoHttp =
     process.env.NODE_ENV === 'development'

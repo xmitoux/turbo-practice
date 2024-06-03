@@ -1,14 +1,17 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { Prisma } from '@prisma/client';
-import { DeepMockProxy, mockDeep } from 'vitest-mock-extended';
-
-import { CreatePostDto } from './dto/create-post.dto';
-import { UpdatePostDto } from './dto/update-post.dto';
-import { PostEntity } from './entities/post.entity';
-import { PostsController } from './posts.controller';
-import { PostsService } from './posts.service';
+import type { TestingModule } from '@nestjs/testing';
+import type { Prisma } from '@prisma/client';
+import type { DeepMockProxy} from 'vitest-mock-extended';
 
 import { PrismaService } from '@/common/services/prisma.service';
+import { Test } from '@nestjs/testing';
+import { mockDeep } from 'vitest-mock-extended';
+
+import type { CreatePostDto } from './dto/create-post.dto';
+import type { UpdatePostDto } from './dto/update-post.dto';
+import type { PostEntity } from './entities/post.entity';
+
+import { PostsController } from './posts.controller';
+import { PostsService } from './posts.service';
 
 describe('PostsController', () => {
     let controller: PostsController;

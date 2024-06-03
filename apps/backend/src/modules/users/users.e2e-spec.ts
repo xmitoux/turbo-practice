@@ -1,15 +1,17 @@
-import { HttpStatus, INestApplication } from '@nestjs/common';
+import type { INestApplication } from '@nestjs/common';
+
+import { randomSchemaId } from '@/common/utils/test/setup-e2e';
+import { resetTable, setupTestingModule } from '@/common/utils/test/test-utils';
+import { HttpStatus } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 // https://docs.nestjs.com/recipes/swc#update-imports-in-e2e-tests
 import request from 'supertest';
 
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { UserEntity } from './entities/user.entity';
-import { UsersModule } from './users.module';
+import type { CreateUserDto } from './dto/create-user.dto';
+import type { UpdateUserDto } from './dto/update-user.dto';
+import type { UserEntity } from './entities/user.entity';
 
-import { randomSchemaId } from '@/common/utils/test/setup-e2e';
-import { setupTestingModule, resetTable } from '@/common/utils/test/test-utils';
+import { UsersModule } from './users.module';
 
 describe('UsersController (e2e)', () => {
     let app: INestApplication;
