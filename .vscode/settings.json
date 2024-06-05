@@ -1,31 +1,22 @@
 {
-  "eslint.workingDirectories": [
-    {
-      "mode": "auto"
-    }
-  ],
-  // ESLint・Prettier 設定
-  "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit"
-  },
-  "[javascript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[vue]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[markdown]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  // Enable ESlint flat config support
-  "eslint.experimental.useFlatConfig": true,
-  "editor.formatOnType": true,
-  "editor.formatOnSave": true,
-  "material-icon-theme.activeIconPack": "nest"
+    "eslint.workingDirectories": [
+        {
+            "mode": "auto"
+        }
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    // Enable ESlint flat config support
+    "eslint.experimental.useFlatConfig": true,
+    "editor.formatOnType": true,
+    "editor.formatOnSave": false,
+    // Not show the error messages (yellow squiggly lines)
+    "eslint.rules.customizations": [
+        {
+            "rule": "@stylistic/*",
+            "severity": "off"
+        }
+    ],
+    "material-icon-theme.activeIconPack": "nest"
 }
