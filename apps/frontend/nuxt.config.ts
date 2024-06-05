@@ -6,5 +6,10 @@ export default defineNuxtConfig({
     port: 3001,
   },
   devtools: { enabled: true },
+  eslint: {
+    config: {
+      stylistic: true,
+    },
+  },
   modules: ['@nuxt/eslint'],
 });
