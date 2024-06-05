@@ -23,6 +23,8 @@
   "[json]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  // Enable ESlint flat config support
+  "eslint.experimental.useFlatConfig": true,
   "editor.formatOnType": true,
   "editor.formatOnSave": true,
   "material-icon-theme.activeIconPack": "nest"

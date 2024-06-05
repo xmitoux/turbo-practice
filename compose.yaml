@@ -1,0 +1,39 @@
+services:
+  turbo_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    environment:
+      - TZ=Asia/Tokyo
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    volumes:
+      - .:/app
+      - node_modules_root:/app/node_modules
+      - node_modules_frontend:/app/apps/frontend/node_modules
+      - node_modules_backend:/app/apps/backend/node_modules
+      - node_modules_lint:/app/packages/lint/node_modules
+    init: true
+    tty: true
+    depends_on:
+      - postgres_db
+
+  postgres_db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - data:/var/lib/postgresql/data
+
+volumes:
+  data:
+  node_modules_root:
+  node_modules_frontend:
+  node_modules_backend:
+  node_modules_lint:
