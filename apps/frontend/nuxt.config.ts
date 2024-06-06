@@ -1,4 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+// dev環境でのみ使用するモジュール
+const devModules = process.env.NODE_ENV === 'development'
+  ? ['@nuxt/eslint']
+  : [];
+
 export default defineNuxtConfig({
   devServer: {
     // https://ja.vitejs.dev/config/server-options
@@ -11,5 +17,6 @@ export default defineNuxtConfig({
       stylistic: true,
     },
   },
-  modules: ['@nuxt/eslint'],
+  modules: [...devModules],
+
 });
