@@ -8,48 +8,48 @@ import { AqoursMember } from './entities/aqours_member.entity';
 
 @Controller('aqours-members')
 export class AqoursMembersController {
-    constructor(private readonly aqoursMembersService: AqoursMembersService) {}
+  constructor(private readonly aqoursMembersService: AqoursMembersService) {}
 
-    @Post()
-    @HttpCode(HttpStatus.CREATED)
-    create(@Body() createAqoursMemberDto: CreateAqoursMemberDto) {
-        return this.aqoursMembersService.create(createAqoursMemberDto);
-    }
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  create(@Body() createAqoursMemberDto: CreateAqoursMemberDto) {
+    return this.aqoursMembersService.create(createAqoursMemberDto);
+  }
 
-    @Post('bulk')
-    createBulk(
+  @Post('bulk')
+  createBulk(
         @Body(new ParseArrayPipe({ items: CreateAqoursMemberDto }))
         createAqoursMemberDtos: CreateAqoursMemberDto[],
-    ) {
-        return this.aqoursMembersService.createBulk(createAqoursMemberDtos);
-    }
+  ) {
+    return this.aqoursMembersService.createBulk(createAqoursMemberDtos);
+  }
 
-    @Get()
-    findAll(): AqoursMember[] {
-        return this.aqoursMembersService.findAll();
-    }
+  @Get()
+  findAll(): AqoursMember[] {
+    return this.aqoursMembersService.findAll();
+  }
 
-    @Get('by-ids')
-    findByIds(
+  @Get('by-ids')
+  findByIds(
         @Query('ids', new ParseArrayPipe({ items: Number, separator: ',' }))
         ids: number[],
-    ): AqoursMember[] {
-        return this.aqoursMembersService.findByIds(ids);
-    }
+  ): AqoursMember[] {
+    return this.aqoursMembersService.findByIds(ids);
+  }
 
-    @Get(':id')
-    findOne(@Param('id') id: number): AqoursMember | undefined {
-        const member = this.aqoursMembersService.findOne(id);
-        return member;
-    }
+  @Get(':id')
+  findOne(@Param('id') id: number): AqoursMember | undefined {
+    const member = this.aqoursMembersService.findOne(id);
+    return member;
+  }
 
-    @Delete(':id')
-    remove(@Param('id') id: number) {
-        return this.aqoursMembersService.remove(id);
-    }
+  @Delete(':id')
+  remove(@Param('id') id: number) {
+    return this.aqoursMembersService.remove(id);
+  }
 
-    @Patch(':id')
-    update(@Param('id') id: number, @Body() updateAqoursMemberDto: UpdateAqoursMemberDto) {
-        return this.aqoursMembersService.update(id, updateAqoursMemberDto);
-    }
+  @Patch(':id')
+  update(@Param('id') id: number, @Body() updateAqoursMemberDto: UpdateAqoursMemberDto) {
+    return this.aqoursMembersService.update(id, updateAqoursMemberDto);
+  }
 }

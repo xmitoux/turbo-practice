@@ -1,6 +1,6 @@
 import type { TestingModule } from '@nestjs/testing';
 import type { Prisma } from '@prisma/client';
-import type { DeepMockProxy} from 'vitest-mock-extended';
+import type { DeepMockProxy } from 'vitest-mock-extended';
 
 import { PrismaService } from '@/common/services/prisma.service';
 import { Test } from '@nestjs/testing';
@@ -14,124 +14,124 @@ import { PostsController } from './posts.controller';
 import { PostsService } from './posts.service';
 
 describe('PostsController', () => {
-    let controller: PostsController;
-    let service: PostsService;
-    let mockService: DeepMockProxy<PostsService>;
+  let controller: PostsController;
+  let service: PostsService;
+  let mockService: DeepMockProxy<PostsService>;
 
-    beforeEach(async () => {
-        mockService = mockDeep<PostsService>();
+  beforeEach(async () => {
+    mockService = mockDeep<PostsService>();
 
-        const module: TestingModule = await Test.createTestingModule({
-            controllers: [PostsController],
-            providers: [
-                {
-                    // 実際のサービス
-                    provide: PostsService,
-                    // モックを指定
-                    useValue: mockService,
-                },
-                PrismaService,
-            ],
-        }).compile();
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [PostsController],
+      providers: [
+        {
+          // 実際のサービス
+          provide: PostsService,
+          // モックを指定
+          useValue: mockService,
+        },
+        PrismaService,
+      ],
+    }).compile();
 
-        controller = module.get(PostsController);
-        service = module.get(PostsService);
+    controller = module.get(PostsController);
+    service = module.get(PostsService);
+  });
+
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
+  });
+
+  describe('create', () => {
+    it('should be called', async () => {
+      const data: CreatePostDto = { authorId: 1, title: '' };
+      mockService.create.mockResolvedValue({} as PostEntity);
+      await controller.create(data);
+
+      expect(service.create).toHaveBeenCalledWith(data);
     });
+  });
 
-    it('should be defined', () => {
-        expect(controller).toBeDefined();
+  describe('findAll', () => {
+    it('should be called', async () => {
+      mockService.findAll.mockResolvedValue([]);
+      await controller.findAll();
+
+      expect(service.findAll).toHaveBeenCalled();
     });
+  });
 
-    describe('create', () => {
-        it('should be called', async () => {
-            const data: CreatePostDto = { authorId: 1, title: '' };
-            mockService.create.mockResolvedValue({} as PostEntity);
-            await controller.create(data);
+  describe('findPublishedPosts', () => {
+    it('should be called', async () => {
+      const where: Prisma.PostWhereInput = { published: true };
+      mockService.findAll.mockResolvedValue([]);
+      await controller.findPublishedPosts();
 
-            expect(service.create).toHaveBeenCalledWith(data);
-        });
+      expect(service.findAll).toHaveBeenCalledWith({ where });
     });
+  });
 
-    describe('findAll', () => {
-        it('should be called', async () => {
-            mockService.findAll.mockResolvedValue([]);
-            await controller.findAll();
+  describe('findOne', () => {
+    it('should be called', async () => {
+      const id = 1;
+      mockService.findOne.mockResolvedValue({} as PostEntity);
+      await controller.findOne({ id });
 
-            expect(service.findAll).toHaveBeenCalled();
-        });
+      expect(service.findOne).toHaveBeenCalledWith(id);
     });
+  });
 
-    describe('findPublishedPosts', () => {
-        it('should be called', async () => {
-            const where: Prisma.PostWhereInput = { published: true };
-            mockService.findAll.mockResolvedValue([]);
-            await controller.findPublishedPosts();
+  describe('findFilteredPosts', () => {
+    it('should be called', async () => {
+      const searchString = '';
+      const where: Prisma.PostWhereInput = {
+        OR: [
+          {
+            title: { contains: searchString },
+          },
+          {
+            content: { contains: searchString },
+          },
+        ],
+      };
+      mockService.findAll.mockResolvedValue([]);
+      await controller.findFilteredPosts(searchString);
 
-            expect(service.findAll).toHaveBeenCalledWith({ where });
-        });
+      expect(service.findAll).toHaveBeenCalledWith({ where });
     });
+  });
 
-    describe('findOne', () => {
-        it('should be called', async () => {
-            const id = 1;
-            mockService.findOne.mockResolvedValue({} as PostEntity);
-            await controller.findOne({ id });
+  describe('update', () => {
+    it('should be called', async () => {
+      const id = 1;
+      const data: UpdatePostDto = { title: '' };
+      const where: Prisma.PostWhereInput = { id };
+      mockService.update.mockResolvedValue({} as PostEntity);
+      await controller.update({ id }, data);
 
-            expect(service.findOne).toHaveBeenCalledWith(id);
-        });
+      expect(service.update).toHaveBeenCalledWith({ data, where });
     });
+  });
 
-    describe('findFilteredPosts', () => {
-        it('should be called', async () => {
-            const searchString = '';
-            const where: Prisma.PostWhereInput = {
-                OR: [
-                    {
-                        title: { contains: searchString },
-                    },
-                    {
-                        content: { contains: searchString },
-                    },
-                ],
-            };
-            mockService.findAll.mockResolvedValue([]);
-            await controller.findFilteredPosts(searchString);
+  describe('publishPost', () => {
+    it('should be called', async () => {
+      const id = 1;
+      const data: Prisma.PostUpdateInput = { published: true };
+      const where: Prisma.PostWhereInput = { id };
+      mockService.update.mockResolvedValue({} as PostEntity);
+      await controller.publishPost({ id });
 
-            expect(service.findAll).toHaveBeenCalledWith({ where });
-        });
+      expect(service.update).toHaveBeenCalledWith({ data, where });
     });
+  });
 
-    describe('update', () => {
-        it('should be called', async () => {
-            const id = 1;
-            const data: UpdatePostDto = { title: '' };
-            const where: Prisma.PostWhereInput = { id };
-            mockService.update.mockResolvedValue({} as PostEntity);
-            await controller.update({ id }, data);
+  describe('delete', () => {
+    it('should be called', async () => {
+      const id = 1;
+      mockService.delete.mockResolvedValue({} as PostEntity);
+      await controller.delete({ id });
 
-            expect(service.update).toHaveBeenCalledWith({ data, where });
-        });
+      expect(service.delete).toHaveBeenCalledWith(id);
     });
-
-    describe('publishPost', () => {
-        it('should be called', async () => {
-            const id = 1;
-            const data: Prisma.PostUpdateInput = { published: true };
-            const where: Prisma.PostWhereInput = { id };
-            mockService.update.mockResolvedValue({} as PostEntity);
-            await controller.publishPost({ id });
-
-            expect(service.update).toHaveBeenCalledWith({ data, where });
-        });
-    });
-
-    describe('delete', () => {
-        it('should be called', async () => {
-            const id = 1;
-            mockService.delete.mockResolvedValue({} as PostEntity);
-            await controller.delete({ id });
-
-            expect(service.delete).toHaveBeenCalledWith(id);
-        });
-    });
+  });
 });

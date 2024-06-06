@@ -1,6 +1,6 @@
 import type { TestingModule } from '@nestjs/testing';
 import type { Prisma, PrismaClient } from '@prisma/client';
-import type { DeepMockProxy} from 'vitest-mock-extended';
+import type { DeepMockProxy } from 'vitest-mock-extended';
 
 import { PrismaService } from '@/common/services/prisma.service';
 import { Test } from '@nestjs/testing';
@@ -11,95 +11,95 @@ import type { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
 
 describe('UsersService', () => {
-    let service: UsersService;
-    let prismaMock: DeepMockProxy<PrismaClient>;
+  let service: UsersService;
+  let prismaMock: DeepMockProxy<PrismaClient>;
 
-    beforeEach(async () => {
-        prismaMock = mockDeep<PrismaClient>();
+  beforeEach(async () => {
+    prismaMock = mockDeep<PrismaClient>();
 
-        const module: TestingModule = await Test.createTestingModule({
-            providers: [
-                UsersService,
-                {
-                    provide: PrismaService,
-                    useValue: prismaMock,
-                },
-            ],
-        }).compile();
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        UsersService,
+        {
+          provide: PrismaService,
+          useValue: prismaMock,
+        },
+      ],
+    }).compile();
 
-        service = module.get<UsersService>(UsersService);
+    service = module.get<UsersService>(UsersService);
+  });
+
+  it('should be defined', () => {
+    expect(service).toBeDefined();
+  });
+
+  describe('findOne', () => {
+    it('should be called', async () => {
+      const id = 1;
+
+      await service.findOne(id);
+      expect(prismaMock.user.findUniqueOrThrow).toHaveBeenCalledWith({
+        include: {
+          posts: {
+            select: {
+              content: true,
+              title: true,
+            },
+          },
+        },
+        where: { id },
+      });
     });
+  });
 
-    it('should be defined', () => {
-        expect(service).toBeDefined();
+  describe('findAll', () => {
+    it('should be called', async () => {
+      const params: { orderBy?: Prisma.SortOrder; where?: string } = {
+        orderBy: 'asc',
+        where: 'gmail.com',
+      };
+
+      await service.findAll(params);
+      expect(prismaMock.user.findMany).toHaveBeenCalledWith({
+        orderBy: { id: params.orderBy },
+        where: {
+          email: { endsWith: params.where },
+        },
+      });
     });
+  });
 
-    describe('findOne', () => {
-        it('should be called', async () => {
-            const id = 1;
+  describe('create', () => {
+    it('should be called', async () => {
+      const data: Prisma.UserCreateInput = { email: '', name: '' };
 
-            await service.findOne(id);
-            expect(prismaMock.user.findUniqueOrThrow).toHaveBeenCalledWith({
-                include: {
-                    posts: {
-                        select: {
-                            content: true,
-                            title: true,
-                        },
-                    },
-                },
-                where: { id },
-            });
-        });
+      await service.create(data);
+      expect(prismaMock.user.create).toHaveBeenCalledWith({ data });
     });
+  });
 
-    describe('findAll', () => {
-        it('should be called', async () => {
-            const params: { orderBy?: Prisma.SortOrder; where?: string } = {
-                orderBy: 'asc',
-                where: 'gmail.com',
-            };
+  describe('update', () => {
+    it('should be called', async () => {
+      const id = 1;
+      const data: UpdateUserDto = { email: '' };
 
-            await service.findAll(params);
-            expect(prismaMock.user.findMany).toHaveBeenCalledWith({
-                orderBy: { id: params.orderBy },
-                where: {
-                    email: { endsWith: params.where },
-                },
-            });
-        });
+      await service.update(id, data);
+      expect(prismaMock.user.update).toHaveBeenCalledWith({
+        data,
+        where: { id },
+      });
     });
+  });
 
-    describe('create', () => {
-        it('should be called', async () => {
-            const data: Prisma.UserCreateInput = { email: '', name: '' };
+  describe('delete', () => {
+    it('should be called', async () => {
+      const id = 1;
 
-            await service.create(data);
-            expect(prismaMock.user.create).toHaveBeenCalledWith({ data });
-        });
+      await service.delete(id);
+      expect(prismaMock.user.delete).toHaveBeenCalledWith({
+        where: { id },
+      });
     });
-
-    describe('update', () => {
-        it('should be called', async () => {
-            const id = 1;
-            const data: UpdateUserDto = { email: '' };
-
-            await service.update(id, data);
-            expect(prismaMock.user.update).toHaveBeenCalledWith({
-                data,
-                where: { id },
-            });
-        });
-    });
-
-    describe('delete', () => {
-        it('should be called', async () => {
-            const id = 1;
-
-            await service.delete(id);
-            expect(prismaMock.user.delete).toHaveBeenCalledWith({
-                where: { id },
-            });
-        });
-    });
+  });
 });

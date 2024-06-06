@@ -7,27 +7,27 @@ import { AppModule } from './app.module';
 import { PrismaClientExceptionFilter } from './common/filters/prisma-client-exception.filter';
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule, { bufferLogs: true });
+  const app = await NestFactory.create(AppModule, { bufferLogs: true });
 
-    app.useLogger(app.get(Logger));
+  app.useLogger(app.get(Logger));
 
-    app.useGlobalPipes(
-        new ValidationPipe({
-            forbidNonWhitelisted: true,
-            transform: true,
-            transformOptions: { enableImplicitConversion: true },
-            whitelist: true,
-        }),
-    );
+  app.useGlobalPipes(
+    new ValidationPipe({
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+      whitelist: true,
+    }),
+  );
 
-    app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
-    const { httpAdapter } = app.get(HttpAdapterHost);
-    app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
+  const { httpAdapter } = app.get(HttpAdapterHost);
+  app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
 
-    await app.listen(3000, () => {
-        console.log(`My awesome NestJs app is listening on port ${process.env.NODE_ENV}`);
-    });
+  await app.listen(3000, () => {
+    console.log(`My awesome NestJs app is listening on port ${process.env.NODE_ENV}`);
+  });
 }
 
 // eslint-disable-next-line unicorn/prefer-top-level-await

@@ -9,38 +9,38 @@ import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
-    constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) {}
 
-    @Post()
-    async create(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
-        return new UserEntity(await this.usersService.create(createUserDto));
-    }
+  @Post()
+  async create(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
+    return new UserEntity(await this.usersService.create(createUserDto));
+  }
 
-    @Delete(':id')
-    async delete(@Param() { id }: FindOneParam): Promise<UserEntity> {
-        return new UserEntity(await this.usersService.delete(id));
-    }
+  @Delete(':id')
+  async delete(@Param() { id }: FindOneParam): Promise<UserEntity> {
+    return new UserEntity(await this.usersService.delete(id));
+  }
 
-    @Get()
-    async findAll(
+  @Get()
+  async findAll(
         @Query('where') where?: string,
         @Query('orderBy') orderBy: Prisma.SortOrder | undefined = 'asc',
-    ): Promise<UserEntity[]> {
-        const users = await this.usersService.findAll({
-            orderBy,
-            where,
-        });
+  ): Promise<UserEntity[]> {
+    const users = await this.usersService.findAll({
+      orderBy,
+      where,
+    });
 
-        return users.map((user) => new UserEntity(user));
-    }
+    return users.map(user => new UserEntity(user));
+  }
 
-    @Get(':id')
-    async findOne(@Param() { id }: FindOneParam): Promise<UserEntity> {
-        return new UserEntity(await this.usersService.findOne(id));
-    }
+  @Get(':id')
+  async findOne(@Param() { id }: FindOneParam): Promise<UserEntity> {
+    return new UserEntity(await this.usersService.findOne(id));
+  }
 
-    @Patch(':id')
-    async update(@Param() { id }: FindOneParam, @Body() updateUserDto: UpdateUserDto): Promise<UserEntity> {
-        return new UserEntity(await this.usersService.update(id, updateUserDto));
-    }
+  @Patch(':id')
+  async update(@Param() { id }: FindOneParam, @Body() updateUserDto: UpdateUserDto): Promise<UserEntity> {
+    return new UserEntity(await this.usersService.update(id, updateUserDto));
+  }
 }
