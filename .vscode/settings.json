@@ -1,22 +1,29 @@
 {
-    "eslint.workingDirectories": [
-        {
-            "mode": "auto"
-        }
-    ],
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
-    },
-    // Enable ESlint flat config support
-    "eslint.experimental.useFlatConfig": true,
-    "editor.formatOnType": true,
+  "editor.tabSize": 2,
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  // Enable ESlint flat config support
+  "eslint.experimental.useFlatConfig": true,
+  // Not show the error messages (yellow squiggly lines)
+  "eslint.rules.customizations": [
+    {
+      "rule": "@stylistic/*",
+      "severity": "off"
+    }
+  ],
+  "[javascript]": {
     "editor.formatOnSave": false,
-    // Not show the error messages (yellow squiggly lines)
-    "eslint.rules.customizations": [
-        {
-            "rule": "@stylistic/*",
-            "severity": "off"
-        }
-    ],
-    "material-icon-theme.activeIconPack": "nest"
+  },
+  "[typescript]": {
+    "editor.formatOnSave": false,
+  },
+  "[vue]": {
+    "editor.formatOnSave": false,
+  },
 }
