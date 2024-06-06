@@ -1,6 +1,6 @@
 import type { TestingModule } from '@nestjs/testing';
 import type { Prisma } from '@prisma/client';
-import type { DeepMockProxy} from 'vitest-mock-extended';
+import type { DeepMockProxy } from 'vitest-mock-extended';
 
 import { PrismaService } from '@/common/services/prisma.service';
 import { Test } from '@nestjs/testing';
@@ -14,76 +14,76 @@ import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 
 describe('UsersController', () => {
-    let controller: UsersController;
-    let service: UsersService;
-    let mockService: DeepMockProxy<UsersService>;
+  let controller: UsersController;
+  let service: UsersService;
+  let mockService: DeepMockProxy<UsersService>;
 
-    beforeEach(async () => {
-        mockService = mockDeep<UsersService>();
+  beforeEach(async () => {
+    mockService = mockDeep<UsersService>();
 
-        const module: TestingModule = await Test.createTestingModule({
-            controllers: [UsersController],
-            providers: [
-                {
-                    // 実際のサービス
-                    provide: UsersService,
-                    // モックを指定
-                    useValue: mockService,
-                },
-                PrismaService,
-            ],
-        }).compile();
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [UsersController],
+      providers: [
+        {
+          // 実際のサービス
+          provide: UsersService,
+          // モックを指定
+          useValue: mockService,
+        },
+        PrismaService,
+      ],
+    }).compile();
 
-        controller = module.get<UsersController>(UsersController);
-        service = module.get<UsersService>(UsersService);
-    });
+    controller = module.get<UsersController>(UsersController);
+    service = module.get<UsersService>(UsersService);
+  });
 
-    it('should be defined', () => {
-        expect(controller).toBeDefined();
-    });
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
+  });
 
-    it('create', async () => {
-        const data: CreateUserDto = { email: 'updated@hoge.mail', name: 'hoge', password: 'pass' };
-        // コントローラを実行
-        mockService.create.mockResolvedValue({} as UserEntity);
-        await controller.create(data);
+  it('create', async () => {
+    const data: CreateUserDto = { email: 'updated@hoge.mail', name: 'hoge', password: 'pass' };
+    // コントローラを実行
+    mockService.create.mockResolvedValue({} as UserEntity);
+    await controller.create(data);
 
-        // コントローラ内でサービスの関数が実行されたか(実際に動くのはモック)
-        expect(service.create).toHaveBeenCalledWith(data);
-    });
+    // コントローラ内でサービスの関数が実行されたか(実際に動くのはモック)
+    expect(service.create).toHaveBeenCalledWith(data);
+  });
 
-    it('findAll', async () => {
-        const orderBy: Prisma.SortOrder = 'asc';
-        const where = 'gmail.com';
-        mockService.findAll.mockResolvedValue([]);
+  it('findAll', async () => {
+    const orderBy: Prisma.SortOrder = 'asc';
+    const where = 'gmail.com';
+    mockService.findAll.mockResolvedValue([]);
 
-        await controller.findAll(where, orderBy);
+    await controller.findAll(where, orderBy);
 
-        expect(service.findAll).toHaveBeenCalledWith({ orderBy, where });
-    });
+    expect(service.findAll).toHaveBeenCalledWith({ orderBy, where });
+  });
 
-    it('findOne', async () => {
-        const id = 1;
-        mockService.findOne.mockResolvedValue({} as UserEntity);
-        await controller.findOne({ id });
+  it('findOne', async () => {
+    const id = 1;
+    mockService.findOne.mockResolvedValue({} as UserEntity);
+    await controller.findOne({ id });
 
-        expect(service.findOne).toHaveBeenCalledWith(id);
-    });
+    expect(service.findOne).toHaveBeenCalledWith(id);
+  });
 
-    it('update', async () => {
-        const id = 1;
-        const data: UpdateUserDto = { email: 'updated@hoge.mail', name: 'updated' };
-        mockService.update.mockResolvedValue({} as UserEntity);
-        await controller.update({ id }, data);
+  it('update', async () => {
+    const id = 1;
+    const data: UpdateUserDto = { email: 'updated@hoge.mail', name: 'updated' };
+    mockService.update.mockResolvedValue({} as UserEntity);
+    await controller.update({ id }, data);
 
-        expect(service.update).toHaveBeenCalledWith(id, data);
-    });
+    expect(service.update).toHaveBeenCalledWith(id, data);
+  });
 
-    it('delete', async () => {
-        const id = 1;
-        mockService.delete.mockResolvedValue({} as UserEntity);
-        await controller.delete({ id });
+  it('delete', async () => {
+    const id = 1;
+    mockService.delete.mockResolvedValue({} as UserEntity);
+    await controller.delete({ id });
 
-        expect(service.delete).toHaveBeenCalledWith(id);
-    });
+    expect(service.delete).toHaveBeenCalledWith(id);
+  });
 });

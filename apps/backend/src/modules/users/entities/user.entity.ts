@@ -3,27 +3,27 @@ import { User } from '@prisma/client';
 import { Exclude, Expose } from 'class-transformer';
 
 export class UserEntity implements User {
-    email: string;
+  email: string;
 
-    id: number;
+  id: number;
 
-    name: string;
+  name: string;
 
-    @Exclude()
+  @Exclude()
     password: string;
 
-    posts: PostEntity[];
+  posts: PostEntity[];
 
-    constructor({ posts, ...data }: Partial<UserEntity>) {
-        Object.assign(this, data);
+  constructor({ posts, ...data }: Partial<UserEntity>) {
+    Object.assign(this, data);
 
-        if (posts) {
-            this.posts = posts.map((post) => new PostEntity(post));
-        }
+    if (posts) {
+      this.posts = posts.map(post => new PostEntity(post));
     }
+  }
 
-    @Expose()
-    get nameWithEmail(): string {
-        return `${this.name}(${this.email})`;
-    }
+  @Expose()
+  get nameWithEmail(): string {
+    return `${this.name}(${this.email})`;
+  }
 }

@@ -1,21 +1,22 @@
 {
-    "name": "frontend",
-    "private": true,
-    "type": "module",
-    "scripts": {
-        "build": "nuxt build",
-        "dev": "nuxt dev",
-        "generate": "nuxt generate",
-        "preview": "nuxt preview",
-        "postinstall": "nuxt prepare"
-    },
-    "dependencies": {
-        "@repo/lint": "workspace:*",
-        "nuxt": "^3.11.2",
-        "vue": "^3.4.27",
-        "vue-router": "^4.3.2"
-    },
-    "devDependencies": {
-        "eslint": "^9.4.0"
-    }
+  "name": "frontend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint \"**/*.{ts,vue}\" --fix"
+  },
+  "dependencies": {
+    "@repo/lint": "workspace:*",
+    "nuxt": "^3.11.2",
+    "vue": "^3.4.27",
+    "vue-router": "^4.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^9.4.0"
+  }
 }

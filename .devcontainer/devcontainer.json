@@ -1,17 +1,16 @@
 {
-    "name": "Turborepo Practice",
-    "dockerComposeFile": "../compose.yaml",
-    "service": "turbo_app",
-    "workspaceFolder": "/app",
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "dbaeumer.vscode-eslint",
-                "esbenp.prettier-vscode",
-                "vue.volar",
-                "ms-azuretools.vscode-docker"
-            ]
-        }
-    },
-    "postCreateCommand": "pnpm install && pnpm backend dev:prepare"
+  "name": "Turborepo Practice",
+  "dockerComposeFile": "../compose.yaml",
+  "service": "turbo_app",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "vue.volar",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "postCreateCommand": "pnpm install && pnpm backend dev:prepare"
 }

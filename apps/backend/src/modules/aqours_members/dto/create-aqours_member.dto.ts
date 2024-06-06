@@ -1,12 +1,12 @@
 import { IsNumber, IsString } from 'class-validator';
 
 export class CreateAqoursMemberDto {
-    @IsNumber()
+  @IsNumber()
     grade: number;
 
-    @IsString()
+  @IsString()
     icon: string;
 
-    @IsString()
+  @IsString()
     name: string;
 }

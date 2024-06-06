@@ -3,6 +3,7 @@ import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import configPerfectionistNatural from 'eslint-plugin-perfectionist/configs/recommended-natural';
 import onlyWarn from 'eslint-plugin-only-warn';
 import typescriptParser from '@typescript-eslint/parser';
+import stylistic from '@stylistic/eslint-plugin';
 
 /**
  * @type {import('eslint').Linter.FlatConfig}
@@ -39,6 +40,10 @@ const configOnlyWarn = {
     },
 };
 
+const configStylistic = stylistic.configs.customize({
+    semi: true,
+});
+
 export const eslintConfigNuxt = [
     customEslintRules,
     customIgnores,
@@ -46,6 +51,7 @@ export const eslintConfigNuxt = [
     customUnicornRules,
     configPerfectionistNatural,
     configOnlyWarn,
+    configStylistic,
 ];
 
 // NestJS用のクラスデコレータに関する設定
@@ -68,4 +74,5 @@ export const eslintConfigStandalone = createConfigForNuxt().append([
     configPerfectionistNatural,
     configOnlyWarn,
     configParser,
+    configStylistic,
 ]);
