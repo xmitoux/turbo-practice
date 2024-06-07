@@ -12,11 +12,16 @@ RUN npm install -g pnpm
 FROM dev-base as dev
 ENV NODE_ENV=development
 
-COPY --chown=node:node . .
+COPY --chown=node:node ./package.json ./pnpm-lock.yaml ./pnpm-workspace.yaml ./
+COPY --chown=node:node ./apps/backend/package.json ./apps/backend/
+COPY --chown=node:node ./apps/frontend/package.json ./apps/frontend/
+COPY --chown=node:node ./packages/lint/package.json ./packages/lint/
 
-RUN pnpm install --frozen-lockfile && \
+RUN pnpm install && \
     chown -R node:node . && \
     chown -R node:node $PNPM_HOME
+
+COPY --chown=node:node . .
 
 USER node
 
