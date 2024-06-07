@@ -12,12 +12,11 @@ RUN npm install -g pnpm
 FROM dev-base as dev
 ENV NODE_ENV=development
 
-COPY --chown=node:node package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY --chown=node:node . .
+
 RUN pnpm install --frozen-lockfile && \
-    chown -R node:node $PNPM_HOME && \
-    # chown -R node:node ./node_modules
-    chown -R node:node .
-COPY --chown=node:node  . .
+    chown -R node:node . && \
+    chown -R node:node $PNPM_HOME
 
 USER node
 
