@@ -91,7 +91,7 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0(vitest@1.6.0(@types/node@20.12.13)(terser@5.31.0))
       eslint:
-        specifier: 9.4.0
+        specifier: ^9.4.0
         version: 9.4.0
       pino-pretty:
         specifier: ^11.1.0
