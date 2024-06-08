@@ -5,6 +5,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 
+import { PlayRecordsModule } from './play_records/play_records.module';
+
 const pinoHttp
   = process.env.NODE_ENV === 'development'
     ? {
@@ -23,6 +25,7 @@ const pinoHttp
     AqoursMembersModule,
     UsersModule,
     PostsModule,
+    PlayRecordsModule,
   ],
 })
 export class AppModule {}
