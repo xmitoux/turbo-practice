@@ -33,3 +33,23 @@ model Post {
 
   @@map("posts")
 }
+
+model PlayRecord {
+  id        Int   @id @default(autoincrement())
+  startTime Int   @map("start_time")
+  endTime   Int   @map("end_time")
+  playTime  Int   @map("play_time")
+  image     Image @relation(fields: [imageId], references: [id])
+  imageId   Int   @map("image_id")
+
+  @@map("play_records")
+}
+
+model Image {
+  id         Int          @id @default(autoincrement())
+  fileName   String       @map("file_name")
+  fileUrl    String       @map("file_url")
+  PlayRecord PlayRecord[]
+
+  @@map("images")
+}
