@@ -48,7 +48,7 @@ model PlayRecord {
 model Image {
   id         Int          @id @default(autoincrement())
   fileName   String       @map("file_name")
-  PlayRecord PlayRecord[]
+  playRecord PlayRecord[]
 
   @@map("images")
 }
