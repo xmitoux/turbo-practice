@@ -5,7 +5,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 
-import { ImagesModule } from './images/images.module';
+import { ImagesModule } from './modules/images/images.module';
 import { PlayRecordsModule } from './play_records/play_records.module';
 
 const pinoHttp

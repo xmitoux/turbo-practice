@@ -1,7 +1,7 @@
 import type { PlayRecord } from '@prisma/client';
 
 import { OmitSafe, Overwrite } from '@/common/utils/util-types';
-import { ImageEntity, ImageEntityResponse } from '@/images/entities/image.entity';
+import { ImageEntity, ImageEntityResponse } from '@/modules/images/entities/image.entity';
 import { Exclude, Expose } from 'class-transformer';
 
 export class PlayRecordEntity implements PlayRecord {
