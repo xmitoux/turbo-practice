@@ -1,10 +1,14 @@
-import type { Image } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 
 import { OmitSafe, Overwrite } from '@/common/utils/util-types';
 import { PlayRecordEntity, PlayRecordEntityResponse } from '@/play_records/entities/play_record.entity';
 import { Exclude, Expose } from 'class-transformer';
 
-export class ImageEntity implements Image {
+type ImageWithPlayRecords = Prisma.ImageGetPayload<{
+  include: { playRecords: true };
+}>;
+
+export class ImageEntity implements ImageWithPlayRecords {
   @Exclude()
   fileName: string;
 

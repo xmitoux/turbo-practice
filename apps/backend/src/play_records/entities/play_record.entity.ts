@@ -1,10 +1,14 @@
-import type { PlayRecord } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 
 import { OmitSafe, Overwrite } from '@/common/utils/util-types';
 import { ImageEntity, ImageEntityResponse } from '@/modules/images/entities/image.entity';
 import { Exclude, Expose } from 'class-transformer';
 
-export class PlayRecordEntity implements PlayRecord {
+type PlayRecordsWithImage = Prisma.PlayRecordGetPayload<{
+  include: { image: true };
+}>;
+
+export class PlayRecordEntity implements PlayRecordsWithImage {
   endTime: number;
   id: number;
   image: ImageEntity;
