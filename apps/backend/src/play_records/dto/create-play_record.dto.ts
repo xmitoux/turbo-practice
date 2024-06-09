@@ -6,7 +6,7 @@ export class CreatePlayRecordDto implements Prisma.PlayRecordCreateInput {
   @IsNumber()
   endTime: number;
 
-  image: Prisma.ImageCreateNestedOneWithoutPlayRecordInput;
+  image: Prisma.ImageCreateNestedOneWithoutPlayRecordsInput;
 
   @IsNumber()
   playTime: number;

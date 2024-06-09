@@ -1,20 +1,29 @@
+import { PrismaService } from '@/common/services/prisma.service';
 import { Injectable } from '@nestjs/common';
+import { PlayRecord } from '@prisma/client';
 
 import { CreatePlayRecordDto } from './dto/create-play_record.dto';
 import { UpdatePlayRecordDto } from './dto/update-play_record.dto';
 
 @Injectable()
 export class PlayRecordsService {
-  create(createPlayRecordDto: CreatePlayRecordDto) {
-    return 'This action adds a new playRecord';
+  constructor(private prisma: PrismaService) {}
+
+  create(data: CreatePlayRecordDto): Promise<PlayRecord> {
+    return this.prisma.playRecord.create({ data });
   }
 
   findAll() {
     return `This action returns all playRecords`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} playRecord`;
+  findOne(id: number): Promise<PlayRecord> {
+    return this.prisma.playRecord.findUniqueOrThrow({
+      include: {
+        image: true,
+      },
+      where: { id },
+    });
   }
 
   remove(id: number) {

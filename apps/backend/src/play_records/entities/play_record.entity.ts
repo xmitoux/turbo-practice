@@ -15,10 +15,12 @@ export class PlayRecordEntity implements PlayRecord {
 
   startTime: number;
 
-  constructor({ image, ...data }: PlayRecordEntity) {
+  constructor({ image, ...data }: Partial<PlayRecordEntity>) {
     Object.assign(this, data);
 
-    this.image = new ImageEntity(image);
+    if (image) {
+      this.image = new ImageEntity(image);
+    }
   }
 
   @Expose()

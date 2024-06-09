@@ -1,7 +1,9 @@
+import { FindOneParam } from '@/common/dto/find-one-param.dto';
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 
-import { CreateImageDto } from './dto/create-image.dto';
+import { CreateImageDtoRequest } from './dto/create-image.dto';
 import { UpdateImageDto } from './dto/update-image.dto';
+import { ImageEntity } from './entities/image.entity';
 import { ImagesService } from './images.service';
 
 @Controller('images')
@@ -9,7 +11,7 @@ export class ImagesController {
   constructor(private readonly imagesService: ImagesService) {}
 
   @Post()
-  create(@Body() createImageDto: CreateImageDto) {
+  create(@Body() createImageDto: CreateImageDtoRequest) {
     return this.imagesService.create(createImageDto);
   }
 
@@ -19,8 +21,8 @@ export class ImagesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.imagesService.findOne(+id);
+  async findOne(@Param() { id }: FindOneParam): Promise<ImageEntity> {
+    return new ImageEntity(await this.imagesService.findOne(id));
   }
 
   @Delete(':id')

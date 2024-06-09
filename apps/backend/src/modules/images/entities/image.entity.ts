@@ -12,9 +12,12 @@ export class ImageEntity implements Image {
 
   playRecords: PlayRecordEntity[];
 
-  constructor({ playRecords, ...data }: ImageEntity) {
+  constructor({ playRecords, ...data }: Partial< ImageEntity>) {
     Object.assign(this, data);
-    this.playRecords = playRecords.map(playRecord => new PlayRecordEntity(playRecord));
+
+    if (playRecords) {
+      this.playRecords = playRecords.map(playRecord => new PlayRecordEntity(playRecord));
+    }
   }
 
   @Expose()
