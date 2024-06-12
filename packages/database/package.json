@@ -2,12 +2,10 @@
   "name": "@repo/database",
   "version": "1.0.0",
   "private": true,
-  "exports": {
-    ".": "./index.ts"
-  },
-  "main": "./index.ts",
-  "types": "./index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.js",
   "scripts": {
+    "build": "tsc",
     "db:generate": "prisma generate",
     "db:push": "prisma db push --skip-generate",
     "db:mg": "dotenv -e ../../.env -- prisma migrate dev",
@@ -17,6 +15,7 @@
     "@prisma/client": "^5.15.0"
   },
   "devDependencies": {
-    "prisma": "^5.15.0"
+    "prisma": "^5.15.0",
+    "typescript": "^5.4.5"
   }
 }
