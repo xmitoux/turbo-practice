@@ -38,9 +38,9 @@ importers:
       '@nestjs/platform-express':
         specifier: ^10.3.8
         version: 10.3.8(@nestjs/common@10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.3.8)
-      '@prisma/client':
-        specifier: ^5.15.0
-        version: 5.15.0(prisma@5.15.0)
+      '@repo/database':
+        specifier: workspace:*
+        version: link:../../packages/database
       '@types/express':
         specifier: ^4.17.21
         version: 4.17.21
@@ -96,9 +96,6 @@ importers:
       pino-pretty:
         specifier: ^11.1.0
         version: 11.1.0
-      prisma:
-        specifier: ^5.15.0
-        version: 5.15.0
       source-map-support:
         specifier: ^0.5.21
         version: 0.5.21
@@ -129,6 +126,9 @@ importers:
 
   apps/frontend:
     dependencies:
+      '@repo/database':
+        specifier: workspace:*
+        version: link:../../packages/database
       nuxt:
         specifier: ^3.11.2
         version: 3.11.2(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@20.12.13)(@unocss/reset@0.60.4)(change-case@3.1.0)(encoding@0.1.13)(eslint@9.4.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.18.0))(vue@3.4.27(typescript@5.4.5)))(ioredis@5.4.1)(optionator@0.9.4)(rollup@4.18.0)(terser@5.31.0)(typescript@5.4.5)(unocss@0.60.4(postcss@8.4.38)(rollup@4.18.0)(vite@5.2.12(@types/node@20.12.13)(terser@5.31.0)))(vite@5.2.12(@types/node@20.12.13)(terser@5.31.0))
@@ -145,6 +145,16 @@ importers:
       eslint:
         specifier: ^9.4.0
         version: 9.4.0
+
+  packages/database:
+    dependencies:
+      '@prisma/client':
+        specifier: ^5.15.0
+        version: 5.15.0(prisma@5.15.0)
+    devDependencies:
+      prisma:
+        specifier: ^5.15.0
+        version: 5.15.0
 
   packages/lint:
     devDependencies:
