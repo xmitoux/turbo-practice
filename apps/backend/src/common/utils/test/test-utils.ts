@@ -1,5 +1,5 @@
 import type { INestApplication } from '@nestjs/common';
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@repo/database';
 
 import { PrismaClientExceptionFilter } from '@/common/filters/prisma-client-exception.filter';
 import { ValidationPipe } from '@nestjs/common';

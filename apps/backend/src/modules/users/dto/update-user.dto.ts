@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma } from '@repo/database';
 import { IsEmail, IsOptional, IsString, MinLength } from 'class-validator';
 
 export class UpdateUserDto implements Prisma.UserUpdateInput {

@@ -1,5 +1,5 @@
 import { OmitSafe } from '@/common/utils/util-types';
-import { Prisma } from '@prisma/client';
+import { Prisma } from '@repo/database';
 import { IsNumber } from 'class-validator';
 
 export class CreatePlayRecordDto implements Prisma.PlayRecordCreateInput {

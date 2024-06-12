@@ -1,8 +1,8 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@repo/database';
 import { execSync } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 
-export const prisma = new PrismaClient();
+export const prisma: PrismaClient = new PrismaClient();
 
 const generateUniqueDatabaseURL = (schemaId: string): string => {
   if (!process.env.DATABASE_URL) {
@@ -23,7 +23,7 @@ beforeAll(async () => {
 
   process.env.DATABASE_URL = databaseURL;
 
-  execSync('npx prisma migrate dev');
+  execSync('pnpm dlx prisma migrate dev');
 });
 
 afterAll(async () => {

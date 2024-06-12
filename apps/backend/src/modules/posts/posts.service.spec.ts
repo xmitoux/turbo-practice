@@ -1,5 +1,5 @@
 import type { TestingModule } from '@nestjs/testing';
-import type { PrismaClient } from '@prisma/client';
+import type { PrismaClient } from '@repo/database';
 import type { DeepMockProxy } from 'vitest-mock-extended';
 
 import { PrismaService } from '@/common/services/prisma.service';
