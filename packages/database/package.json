@@ -6,9 +6,10 @@
   "types": "./dist/index.d.js",
   "scripts": {
     "build": "tsc",
+    "prisma:dev": "dotenv -e ../../.env -- prisma",
     "db:generate": "prisma generate",
-    "db:push": "prisma db push --skip-generate",
-    "db:mg": "dotenv -e ../../.env -- prisma migrate dev",
+    "db:push": "pnpm prisma:dev db push --skip-generate",
+    "db:mg": "pnpm prisma:dev migrate dev",
     "db:deploy": "pnpm dlx prisma generate && pnpm dlx prisma deploy"
   },
   "dependencies": {
