@@ -1,0 +1,22 @@
+{
+  "name": "@repo/database",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.js",
+  "scripts": {
+    "build": "tsc",
+    "prisma:dev": "dotenv -e ../../.env -- prisma",
+    "db:generate": "prisma generate",
+    "db:push": "pnpm prisma:dev db push --skip-generate",
+    "db:mg": "pnpm prisma:dev migrate dev",
+    "db:deploy": "pnpm dlx prisma generate && pnpm dlx prisma deploy"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.15.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.15.0",
+    "typescript": "^5.4.5"
+  }
+}

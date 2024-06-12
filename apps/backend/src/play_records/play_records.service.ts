@@ -1,6 +1,6 @@
 import { PrismaService } from '@/common/services/prisma.service';
 import { Injectable } from '@nestjs/common';
-import { PlayRecord } from '@prisma/client';
+import { PlayRecord } from '@repo/database';
 
 import { CreatePlayRecordDto } from './dto/create-play_record.dto';
 import { UpdatePlayRecordDto } from './dto/update-play_record.dto';

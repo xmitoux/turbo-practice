@@ -15,6 +15,7 @@ services:
       - node_modules_frontend:/app/apps/frontend/node_modules
       - node_modules_backend:/app/apps/backend/node_modules
       - node_modules_lint:/app/packages/lint/node_modules
+      - node_modules_database:/app/packages/database/node_modules
     init: true
     tty: true
     depends_on:
@@ -37,3 +38,4 @@ volumes:
   node_modules_frontend:
   node_modules_backend:
   node_modules_lint:
+  node_modules_database:

@@ -1,5 +1,5 @@
 import { PostEntity } from '@/modules/posts/entities/post.entity';
-import { User } from '@prisma/client';
+import { User } from '@repo/database';
 import { Exclude, Expose } from 'class-transformer';
 
 export class UserEntity implements User {

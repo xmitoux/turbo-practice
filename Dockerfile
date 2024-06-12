@@ -16,6 +16,7 @@ COPY --chown=node:node ./package.json ./pnpm-lock.yaml ./pnpm-workspace.yaml ./
 COPY --chown=node:node ./apps/backend/package.json ./apps/backend/
 COPY --chown=node:node ./apps/frontend/package.json ./apps/frontend/
 COPY --chown=node:node ./packages/lint/package.json ./packages/lint/
+COPY --chown=node:node ./packages/database/package.json ./packages/database/
 
 RUN pnpm install && \
     chown -R node:node . && \

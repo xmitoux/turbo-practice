@@ -1,7 +1,6 @@
-import type { Prisma } from '@prisma/client';
-
 import { OmitSafe, Overwrite } from '@/common/utils/util-types';
 import { ImageEntity, ImageEntityResponse } from '@/modules/images/entities/image.entity';
+import { Prisma } from '@repo/database';
 import { Exclude, Expose } from 'class-transformer';
 
 type PlayRecordsWithImage = Prisma.PlayRecordGetPayload<{

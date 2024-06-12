@@ -1,6 +1,6 @@
 import { FindOneParam } from '@/common/dto/find-one-param.dto';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma } from '@repo/database';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
