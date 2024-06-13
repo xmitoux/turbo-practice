@@ -18,5 +18,4 @@ export default defineNuxtConfig({
     },
   },
   modules: [...devModules],
-
 });

@@ -13,5 +13,5 @@
       ]
     }
   },
-  "postCreateCommand": "pnpm install && pnpm -F database db db:mg"
+  "postCreateCommand": "pnpm install && pnpm -F database db:mg"
 }
