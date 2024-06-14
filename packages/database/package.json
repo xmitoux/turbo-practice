@@ -4,6 +4,9 @@
   "private": true,
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "scripts": {
     "build": "tsc",
     "prisma:dev": "dotenv -e ../../.env -- prisma",
