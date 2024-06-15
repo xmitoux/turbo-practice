@@ -1,16 +1,17 @@
-import { Prisma } from '@repo/database';
+import type { PostCreateDto as Dto } from '@repo/database';
+
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
-export class CreatePostDto implements Prisma.PostCreateInput {
+export class PostCreateDto implements Dto {
   @IsOptional()
   @IsNumber()
-    authorId: number;
+  authorId: number;
 
   @IsOptional()
   @IsString()
-    content?: string;
+  content?: string;
 
   @IsNotEmpty()
   @IsString()
-    title: string;
+  title: string;
 }

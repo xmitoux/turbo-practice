@@ -1,17 +1,18 @@
-import { Prisma } from '@repo/database';
+import type { UserCreateDto as Dto } from '@repo/database';
+
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 
-export class CreateUserDto implements Prisma.UserCreateInput {
+export class UserCreateDto implements Dto {
   @IsEmail()
   @IsNotEmpty()
-    email: string;
+  email: string;
 
   @IsString()
   @IsNotEmpty()
-    name: string;
+  name: string;
 
   @IsString()
   @IsNotEmpty()
   @MinLength(6)
-    password: string;
+  password: string;
 }

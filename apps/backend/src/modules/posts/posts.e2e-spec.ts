@@ -8,7 +8,7 @@ import { Test } from '@nestjs/testing';
 import request from 'supertest';
 
 import type { CreateUserDto } from '../users/dto/create-user.dto';
-import type { CreatePostDto } from './dto/create-post.dto';
+import type { PostCreateDto } from './dto/create-post.dto';
 import type { UpdatePostDto } from './dto/update-post.dto';
 import type { PostEntity } from './entities/post.entity';
 
@@ -36,7 +36,7 @@ describe('PostsController (e2e)', () => {
       password: 'aaaaaa',
     };
 
-    const createPostDto: CreatePostDto = {
+    const createPostDto: PostCreateDto = {
       authorId: 1,
       content: 'test-content',
       title: 'test-title',

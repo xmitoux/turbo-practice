@@ -21,6 +21,9 @@ export class UsersService {
   async findAll(params: { orderBy?: Prisma.SortOrder; where?: string }): Promise<User[]> {
     const { orderBy, where } = params;
     return this.prisma.user.findMany({
+      include: {
+        posts: true,
+      },
       orderBy: { id: orderBy },
       where: {
         email: { endsWith: where },

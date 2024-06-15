@@ -2,7 +2,7 @@ import { FindOneParam } from '@/common/dto/find-one-param.dto';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { Prisma } from '@repo/database';
 
-import { CreateUserDto } from './dto/create-user.dto';
+import { UserCreateDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserEntity } from './entities/user.entity';
 import { UsersService } from './users.service';
@@ -12,7 +12,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  async create(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
+  async create(@Body() createUserDto: UserCreateDto): Promise<UserEntity> {
     return new UserEntity(await this.usersService.create(createUserDto));
   }
 
