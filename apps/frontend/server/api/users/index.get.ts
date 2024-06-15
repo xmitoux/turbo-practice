@@ -1,5 +1,5 @@
-import { apiUrl } from '~/server/utils/apiUrl';
+import { fetch } from '~/server/utils/fetch';
 
 export default defineEventHandler((event) => {
-  return $fetch(apiUrl(event.path), { method: event.method });
+  return fetch(event.path, { method: event.method });
 });

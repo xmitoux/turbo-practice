@@ -1,6 +1,6 @@
-import { apiUrl } from '~/server/utils/apiUrl';
+import { fetch } from '~/server/utils/fetch';
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  return $fetch(apiUrl(event.path), { body, method: event.method });
+  return fetch(event.path, { body, method: event.method });
 });

@@ -6,7 +6,7 @@ import { UpdatePlayRecordDto } from './dto/update-play_record.dto';
 import { PlayRecordEntity } from './entities/play_record.entity';
 import { PlayRecordsService } from './play_records.service';
 
-@Controller('play-records')
+@Controller('/api/play-records')
 export class PlayRecordsController {
   constructor(private readonly playRecordsService: PlayRecordsService) {}
 
