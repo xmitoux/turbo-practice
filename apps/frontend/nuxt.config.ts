@@ -17,7 +17,10 @@ export default defineNuxtConfig({
       stylistic: true,
     },
   },
-  modules: [...devModules],
+  modules: [
+    'nuxt-quasar-ui',
+    ...devModules,
+  ],
   runtimeConfig: {
     public: {
       baseURL: process.env.BASE_API_URL,
