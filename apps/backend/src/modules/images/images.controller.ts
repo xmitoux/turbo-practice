@@ -6,7 +6,7 @@ import { UpdateImageDto } from './dto/update-image.dto';
 import { ImageEntity } from './entities/image.entity';
 import { ImagesService } from './images.service';
 
-@Controller('images')
+@Controller('/api/images')
 export class ImagesController {
   constructor(private readonly imagesService: ImagesService) {}
 

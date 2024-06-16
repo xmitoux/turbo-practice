@@ -7,7 +7,12 @@ import { AppModule } from './app.module';
 import { PrismaClientExceptionFilter } from './common/filters/prisma-client-exception.filter';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { bufferLogs: true });
+  const app = await NestFactory.create(AppModule, {
+    bufferLogs: true,
+    cors: {
+      origin: 'http://localhost:3001',
+    },
+  });
 
   app.useLogger(app.get(Logger));
 

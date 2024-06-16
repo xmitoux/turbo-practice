@@ -6,7 +6,7 @@ import { CreateAqoursMemberDto } from './dto/create-aqours_member.dto';
 import { UpdateAqoursMemberDto } from './dto/update-aqours_member.dto';
 import { AqoursMember } from './entities/aqours_member.entity';
 
-@Controller('aqours-members')
+@Controller('/api/aqours-members')
 export class AqoursMembersController {
   constructor(private readonly aqoursMembersService: AqoursMembersService) {}
 

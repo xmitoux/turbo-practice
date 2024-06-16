@@ -6,7 +6,7 @@ import { PrismaService } from '@/common/services/prisma.service';
 import { Test } from '@nestjs/testing';
 import { mockDeep } from 'vitest-mock-extended';
 
-import type { CreatePostDto } from './dto/create-post.dto';
+import type { PostCreateDto } from './dto/create-post.dto';
 import type { UpdatePostDto } from './dto/update-post.dto';
 
 import { PostsService } from './posts.service';
@@ -37,7 +37,7 @@ describe('PostsService', () => {
 
   describe('create', () => {
     it('should be called', async () => {
-      const data: CreatePostDto = { authorId: 1, title: '' };
+      const data: PostCreateDto = { authorId: 1, title: '' };
       await service.create(data);
 
       expect(prismaMock.post.create).toHaveBeenCalledWith({ data });

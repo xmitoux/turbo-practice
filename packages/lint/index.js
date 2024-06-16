@@ -13,6 +13,7 @@ export const customEslintRules = {
         'no-console': 'error',
         'array-callback-return': ['error', { checkForEach: true }],
         '@typescript-eslint/no-extraneous-class': 'off',
+        'vue/max-attributes-per-line': 'off'
     },
 };
 
@@ -34,6 +35,12 @@ const customUnicornRules = {
     },
 };
 
+const customPerfectionistRules = {
+    rules: {
+        'perfectionist/sort-vue-attributes': 'off'
+    }
+}
+
 const configOnlyWarn = {
     plugins: {
         'only-warn': onlyWarn,
@@ -50,6 +57,7 @@ export const eslintConfigNuxt = [
     configUnicornRecommended,
     customUnicornRules,
     configPerfectionistNatural,
+    customPerfectionistRules,
     configOnlyWarn,
     configStylistic,
 ];
@@ -72,6 +80,7 @@ export const eslintConfigStandalone = createConfigForNuxt().append([
     configUnicornRecommended,
     customUnicornRules,
     configPerfectionistNatural,
+    customPerfectionistRules,
     configOnlyWarn,
     configParser,
     configStylistic,

@@ -1,5 +1,6 @@
+import type { PostEntity as Post } from '@repo/database';
+
 import { UserEntity } from '@/modules/users/entities/user.entity';
-import { Post } from '@repo/database';
 import { Exclude } from 'class-transformer';
 
 export class PostEntity implements Post {
@@ -9,7 +10,7 @@ export class PostEntity implements Post {
   content: null | string;
   id: number;
   @Exclude()
-    published: boolean | null;
+  published: boolean | null;
 
   title: string;
 

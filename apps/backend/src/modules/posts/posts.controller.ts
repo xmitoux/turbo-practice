@@ -1,17 +1,17 @@
 import { FindOneParam } from '@/common/dto/find-one-param.dto';
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 
-import { CreatePostDto } from './dto/create-post.dto';
+import { PostCreateDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { PostEntity } from './entities/post.entity';
 import { PostsService } from './posts.service';
 
-@Controller('posts')
+@Controller('/api/posts')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Post()
-  async create(@Body() createPostDto: CreatePostDto): Promise<PostEntity> {
+  async create(@Body() createPostDto: PostCreateDto): Promise<PostEntity> {
     return new PostEntity(await this.postsService.create(createPostDto));
   }
 

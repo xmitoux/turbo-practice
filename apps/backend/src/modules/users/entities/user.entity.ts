@@ -1,5 +1,6 @@
+import type { UserEntity as User } from '@repo/database';
+
 import { PostEntity } from '@/modules/posts/entities/post.entity';
-import { User } from '@repo/database';
 import { Exclude, Expose } from 'class-transformer';
 
 export class UserEntity implements User {
@@ -10,7 +11,7 @@ export class UserEntity implements User {
   name: string;
 
   @Exclude()
-    password: string;
+  password: string;
 
   posts: PostEntity[];
 
