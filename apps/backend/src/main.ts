@@ -27,9 +27,9 @@ async function bootstrap() {
   const { httpAdapter } = app.get(HttpAdapterHost);
   app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
 
-  app.enableCors({
-    origin: 'http://localhost:3001',
-  });
+  // app.enableCors({
+  //   origin: 'http://localhost:3001',
+  // });
 
   await app.listen(3000, () => {
     console.log(`My awesome NestJs app is listening on port ${process.env.NODE_ENV}`);
