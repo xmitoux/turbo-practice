@@ -8,7 +8,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "backend": "pnpm -F \"backend\"",
     "frontend": "pnpm -F \"frontend\"",
-    "db": "pnpm -F \"database\""
+    "db": "pnpm -F \"database\"",
+    "render:deploy": "pnpm install --frozen-lockfile && pnpm -F database db:deploy; pnpm turbo build"
   },
   "devDependencies": {
     "@repo/lint": "workspace:*",
