@@ -3,7 +3,7 @@ const text = ref('');
 </script>
 
 <template>
-  <div class="q-pa-lg hidden">
+  <div class="q-pa-lg">
     <div class="q-gutter-md" style="max-width: 300px">
       <QInput v-model="text" label="test" />
     </div>
