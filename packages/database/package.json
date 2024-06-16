@@ -13,7 +13,7 @@
     "db:generate": "prisma generate",
     "db:push": "pnpm prisma:dev db push --skip-generate",
     "db:mg": "pnpm prisma:dev migrate dev",
-    "db:deploy": "pnpm dlx prisma generate && pnpm dlx prisma deploy"
+    "db:deploy": "pnpm dlx prisma generate && pnpm dlx prisma migrate deploy && tsc"
   },
   "dependencies": {
     "@prisma/client": "^5.15.0"
