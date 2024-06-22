@@ -4,6 +4,10 @@ const text = ref('');
 
 <template>
   <div class="q-pa-lg">
+    <NuxtLink to="/hello-turbo">
+      Hello-Turbo page
+    </NuxtLink>
+
     <div class="q-gutter-md" style="max-width: 300px">
       <QInput v-model="text" label="test" />
     </div>
