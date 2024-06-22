@@ -36,7 +36,7 @@ export default defineNuxtConfig({
   },
   modules,
   pwa: {
-    devOptions: { // テスト用
+    devOptions: {
       enabled: true,
       navigateFallback: '/',
       navigateFallbackAllowlist: [/^\/$/],
@@ -74,12 +74,9 @@ export default defineNuxtConfig({
       name: 'アプリ名',
       short_name: 'アプリ短縮名',
       start_url: '/',
-      theme_color: '#326CB3', // テーマカラー
+      theme_color: '#326CB3',
     },
-    registerType: 'autoUpdate', // 多分なくてもよい
-    workbox: { // なんか必要
-      navigateFallback: null,
-    },
+    registerType: 'autoUpdate',
   },
   runtimeConfig: {
     public: {
