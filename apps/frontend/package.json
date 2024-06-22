@@ -8,7 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "eslint \"**/*.{ts,vue}\" --fix"
+    "lint": "eslint \"**/*.{ts,vue}\" --fix",
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/icon.png"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.11",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@repo/lint": "workspace:*",
+    "@vite-pwa/assets-generator": "^0.2.4",
     "eslint": "^9.4.0"
   }
 }
