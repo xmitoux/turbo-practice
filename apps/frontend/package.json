@@ -13,6 +13,7 @@
   "dependencies": {
     "@quasar/extras": "^1.16.11",
     "@repo/database": "workspace:*",
+    "@vite-pwa/nuxt": "^0.8.1",
     "nuxt": "^3.12.1",
     "nuxt-quasar-ui": "^2.1.2",
     "quasar": "^2.16.4",
